@@ -1,0 +1,5 @@
+<% @books.each do |book| %>
+
+<%= book.user.name %>
+<%= attachment_image_tag book.user, :profile_image, fallback: "no-image.png" %>
+<% end %>
