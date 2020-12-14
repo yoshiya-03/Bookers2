@@ -2,10 +2,10 @@
 
 one:
   user_id: 1
-  titel: MyString
+  title: MyString
   body: MyText
 
 two:
   user_id: 1
-  titel: MyString
+  title: MyString
   body: MyText
