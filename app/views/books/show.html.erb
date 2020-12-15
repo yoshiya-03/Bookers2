@@ -1,15 +1,35 @@
-<h1>Books#show</h1>
-<p>Find me in app/views/books/show.html.erb</p>
 
-<%= @book.title %>
-<br>
-<%= @book.body %>
+<div class="col-md-3">
+      <h2>User info</h2>
+      <img class="attachment user profile_image fallback"><table class="table">
+  <tbody><tr></tr>
+  <tr>
+	  <th>name</th>
+	  <th></th>
+  </tr>
+  <tr>
+	  <th>introduction</th>
+  </tr>
+	  <th><%= link_to "edit", edit_user_path(current_user.id) %></th>
+</tbody>
+</table>
 
-<% if @book.user.id == current_user.id %>
-  <br>
-  <%= link_to "編集", edit_book_path(@book) %>
+<div class="col-md-8 ">
+  <table class="table">
+    <h1>Book detail</h1>
+      <thead>
+        <th><%= link_to user_path(@user) %><th>
+        
+         <th><%= @book.title %></th>
+
+         <th><%= @book.body %></th>
+         <td><div class="btn btn-sm btn-success edit_book">
+           <%= link_to "Edit", edit_book_path(@book) %></div></td>
+         <td><a data-confirm="本当に消しますか？" class="btn btn-sm btn-danger destroy_book" rel="nofollow" data-method="delete">Destroy</a></td>
+        </tbody>
+  </table>
+</div>
+         <tr>
+         <th><% if @book.user.id == current_user.id %></th>
+        
 <% end %>
-
-<%= @book.user.name %>
-
-<%= link_to user_path(@book.user) %>

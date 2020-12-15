@@ -1,34 +1,22 @@
-<!--サクセスメッセージ-->
-<% if flash[:notice] %>
-  <p><%= flash[:notice] %></p>
-<% end %>
-
 <div class="col-md-3">
       <h2>User info</h2>
-      <img class="attachment user profile_image fallback"><table class="table">
+      <img class="attachment user profile_image fallback">
+      <table class="table">
   <tbody><tr></tr>
   <tr>
 	  <th>name</th>
 	  <th></th>
   </tr>
-  <tr>
 	  <th>introduction</th>
-  </tr>
+  <tr>
 	  <th><%= link_to "edit", edit_user_path(current_user.id) %></th>
+  </tr>
+  </div>
 </tbody>
 </table>
 
-  
-
-
-
 <h1>New Book</h1>
-<% if @book.errors.any? %>
-  <%= @book.errors.count %>件のエラーが発生しました
-  <% @book.errors.full_messages.each do |message| %>
-    <%= message %>
-  <% end %>
-<% end %>
+
 <%= form_with model: @book, local:true do |f| %>
   <h5>Title</h5>
   <%= f.text_field :title %>
@@ -37,5 +25,3 @@
   <br>
   <%= f.submit 'Create Book' %>
 <% end %>
-
-
