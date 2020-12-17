@@ -1,11 +1,11 @@
 
 class BooksController < ApplicationController
-  
+
   def top
-  end 
+  end
 
   def index
-      @books = Book.all.order(created_at: :desc)
+      @books = Book.all
       @book = Book.new
   end
 
@@ -27,7 +27,9 @@ class BooksController < ApplicationController
   end
 
   def edit
-      @book = Book.find(params[:id])
+    unless @user == current_user
+       redirect_to user_path(@user)
+    end 
   end
 
   def update
@@ -49,7 +51,7 @@ class BooksController < ApplicationController
 
   private
   def book_params
-    params.require(:book).permit(:title, :body)
+    params.require(:book).permit(:user_id, :title, :body)
   end
 
 end

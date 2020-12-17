@@ -1,35 +1,29 @@
+<%= render 'books/list', books: @books %>
 
-<div class="col-md-3">
-      <h2>User info</h2>
-      <img class="attachment user profile_image fallback"><table class="table">
-  <tbody><tr></tr>
-  <tr>
-	  <th>name</th>
-	  <th></th>
-  </tr>
-  <tr>
-	  <th>introduction</th>
-  </tr>
-	  <th><%= link_to "edit", edit_user_path(current_user.id) %></th>
-</tbody>
-</table>
-
-<div class="col-md-8 ">
-  <table class="table">
-    <h1>Book detail</h1>
-      <thead>
-        <th><%= link_to user_path(@user) %><th>
-        
-         <th><%= @book.title %></th>
-
+<h2>Book detail</h2>
+  <div class="container">  <!-- この行を追加 -->
+   <div class="row">      <!-- この行を追加 -->
+    <div class="col-md-9">
+      <table class="table table-striped">
+  <thead>
+    <tr>
+      <th colspan="8"></th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+      　<td><%= attachment_image_tag @user, :profile_image,  format: 'jpeg', fallback: "no-image.png",  size: "60x60" %><td>
+        <th><%= attachment_image_tag @user, :profile_image,  format: 'jpeg', fallback: "no-image.png",  size: "60x60" %></th>
+        <th><%= @book.title %></th>
          <th><%= @book.body %></th>
-         <td><div class="btn btn-sm btn-success edit_book">
-           <%= link_to "Edit", edit_book_path(@book) %></div></td>
-         <td><a data-confirm="本当に消しますか？" class="btn btn-sm btn-danger destroy_book" rel="nofollow" data-method="delete">Destroy</a></td>
-        </tbody>
-  </table>
-</div>
-         <tr>
+         <th><div class="btn btn-sm btn-success edit_book"><%= link_to "Edit", edit_book_path(@book) %><div><th>
+
+         <th><a data-confirm="本当に消しますか？" class="btn btn-sm btn-danger destroy_book" rel="nofollow" data-method="delete">Destroy</a></td>
          <th><% if @book.user.id == current_user.id %></th>
-        
-<% end %>
+    <% end %>
+      </tr>
+     </div>
+    </div>
+    </div>
+  </tbody>
+</table>
