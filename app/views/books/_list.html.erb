@@ -1,11 +1,17 @@
 <div class="col-md-3">
   <table class="table">
-    <h2>User info</h2>
-    <%= attachment_image_tag @user, :profile_image,  format: 'jpeg', fallback: "no-image.png",  size: "120x120" %>
-  <tbody>
-  <tr>
-	 
-  </tr>
+   <h2>User info</h2>
+  <%= attachment_image_tag user, :profile_image, size: '100x100', format: 'jpeg', class: "attachment user profile_image fallback", fallback: "no-image.png" %>
+  <table class="table">
+    <tbody>
+      <tr>
+  	   <th>name</th>
+  	   <th><%= user.name %></th>
+      </tr>
+      <tr>
+  	   <th>introduction</th>
+  	   <th><%= user.introduction %></th>
+      </tr>
   
 	  <th><%= link_to "edit", edit_user_path(current_user.id) %></th>
   </tr>

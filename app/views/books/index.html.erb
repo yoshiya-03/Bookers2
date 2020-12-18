@@ -1,22 +1,20 @@
-<!--サクセスメッセージ-->
-<% if flash[:notice] %>
-  <p><%= flash[:notice] %></p>
-<% end %>
+<div class="row">     
 
-<%= render 'books/list', user: @user, books: @books %>
-<h1>Books</h1>
-  <div class="container">  <!-- この行を追加 -->
-   <div class="row">      <!-- この行を追加 -->
-    <div class="col-md-9">
-      <table class="table">
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Opinion</th>
-      <th colspan="8"></th>
-    </tr>
-  </thead>
-  <tbody>
+  <%= render 'books/list', user: current_user, book: @book %>
+
+
+  <div class="col-md-9">
+    <h1>Books</h1>
+      <div class="container">  
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Title</th>
+              <th>Opinion</th>
+              <th colspan="8"></th>
+            </tr>
+          </thead>
+        <tbody>
     <% @books.each do |book| %>
       <tr>
       　<td><%= attachment_image_tag @user, :profile_image,  format: 'jpeg', fallback: "no-image.png",  size: "60x60" %><td>
