@@ -1,4 +1,4 @@
-<%= render 'books/list', books: @books %>
+<%= render 'books/list', user: @user, books: @books %>
 
 <h2>Book detail</h2>
   <div class="container">
@@ -13,13 +13,11 @@
   <tbody>
       <tr>
         <th><%= attachment_image_tag @user, :profile_image,  format: 'jpeg', fallback: "no-image.png",  size: "60x60" %></th>
-         <th><%= @user.name %></th>
-        <th><%= link_to @book.title %></th>
+        <th><%= @user.name %></th>
+        <th><%= link_to @book.title, book_path(book) %></th>
         <th><%= @book.body %></th>
-        <% if @book.user == current_user %>
+        <% if @book.user_id == current_user.id %>
           <th><div class="btn btn-sm btn-success edit_book"><%= link_to "Edit", edit_book_path(@book) %><div><th>
-        <% end %>
-        <% if @book.user == current_user %>
           <th><a data-confirm="本当に消しますか？" class="btn btn-sm btn-danger destroy_book" rel="nofollow" data-method="delete">Destroy</a></td>
        <% end %>
       </tr>

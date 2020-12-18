@@ -4,70 +4,49 @@
     <title>Bookers2</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <script src="https://kit.fontawesome.com/6c4c9f280d.js" crossorigin="anonymous"></script>
   </head>
 
   <body>
-    <% if flash[:notice] %>
-    <div class="notification is-info">
-     <p class="notice"><%= notice %></p>
-    </div>
-    <% end %>
-     <% if flash[:alate] %>
-    <div class="notification is-info">
-      <p class="alert"><%= alert %></p>
-    </div>
-    <% end %>
+    <header class="navbar navbar-fixed-top navbar-inverse __web-inspector-hide-shortcut__">
+      <div class="container">
+        <nav class="nav navbar-nav navbar-left">
+          <span>Bookers</span>
+        </nav>
+        <nav>
+          <ul class="nav navbar-nav navbar-right">
+            <% if user_signed_in? %>
+              <li><%= link_to " Home", user_path(current_user), class: "glyphicon glyphicon-home home" %></li>
+              <li><%= link_to " Users", users_path, class: "glyphicon glyphicon-user users" %></li>
+              <li><%= link_to " Books", books_path, class: "glyphicon glyphicon-book books" %></li>
+              <li><%= link_to " logout", destroy_user_session_path, method: :delete, class: "glyphicon glyphicon-log-out logout" %></li>
+            <% else %>
+              <li><%= link_to " Home", root_path, class: "glyphicon glyphicon-home home" %></li>
+              
+              <li><%= link_to " sign up", new_user_registration_path, class: "glyphicon glyphicon-edit sign_up" %></li>
+              <li><%= link_to " login", new_user_session_path, class: "glyphicon glyphicon-log-in sign_in" %></li>
+            <% end %>
+          </ul>
+        </nav>
+      </div>
+    </header>
 
-  <header class="shadow-sm">
-  <nav class="navbar navbar-expand-lg navbar-light">
-    <div class="container">
-      <a class="navbar-brand p-3" href="/"></a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNavDropdown">
-        <ul class="navbar-nav ml-auto">
-      <header>Bookres</header>
-     <% if user_signed_in? %>
-       <li>
-        <%= link_to 'Home', user_path(current_user.id) %>
-       </li>
-        <li>
-        <%= link_to 'Users', users_path %>
-       </li>
-        <li>
-        <%= link_to 'Books', books_path %>
-       </li>
-      <li>
-        <%= link_to "logout", destroy_user_session_path, method: :delete %>
-      </li>
-    <% else %>
-      <li>
-        <%= link_to "Home", home_path %>
-      </li>
-      <li>
-        <%= link_to "About", new_user_registration_path %>
-      </li>
-      <li>
-        <%= link_to "sing Up", new_user_registration_path %>
-      </li>
-      <li>
-        <%= link_to "login", new_user_session_path %>
-      </li>
-    <% end %>
-       </ul>
+        <%= yield %>
+
       </div>
     </div>
-  </nav>
-</header>
 
-    <%= yield %>
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <footer>
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-3 col-xs-offset-9">
+            <p>CopyRight Infratop.inc</p>
+          </div>
+        </div>
+      </div>
+    </footer>
   </body>
 </html>

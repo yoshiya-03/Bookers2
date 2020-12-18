@@ -3,7 +3,7 @@
   <p><%= flash[:notice] %></p>
 <% end %>
 
-<%= render 'books/list', books: @books %>
+<%= render 'books/list', user: @user, books: @books %>
 <h1>Books</h1>
   <div class="container">  <!-- この行を追加 -->
    <div class="row">      <!-- この行を追加 -->
