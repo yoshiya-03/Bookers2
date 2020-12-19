@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-	before_action :authenticate_user!
-	before_action :ensure_correct_user, only: [:edit, :update]
+	before_action :authenticate_user! #アクセス制限
+	before_action :ensure_correct_user, only: [:edit, :update] #遷移制限
 
 	def index
 		@users = User.all
@@ -21,7 +21,7 @@ class UsersController < ApplicationController
 		@user = User.find(params[:id])
         if @user.update(user_params)
            flash[:notice] = "You have updated user successfully."
-           redirect_to "/users/#{current_user.id}"
+           redirect_to "/users/#{current_user}"
         else
     		flash[:notice] = " errors prohibited this obj from being saved:"
             render :edit

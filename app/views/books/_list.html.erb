@@ -1,37 +1,40 @@
+<!--  current_user
+現在ログインしているユーザーをモデルオブジェクトとして利用でき。
+関連付けがされている場合、子要素・親要素の取得などが可能-->
+
+
+<%= render 'layouts/error', local: @book %>
+
+
 <div class="col-md-3">
   <table class="table">
-   <h2>User info</h2>
-  <%= attachment_image_tag user, :profile_image, size: '100x100', format: 'jpeg', class: "attachment user profile_image fallback", fallback: "no-image.png" %>
+
+  <h2>User info</h2>
+    <%= attachment_image_tag @user, :profile_image, size: '100x100', format: 'jpeg', class: "attachment user profile_image fallback", fallback: "no-image.png" %>
   <table class="table">
     <tbody>
       <tr>
   	   <th>name</th>
-  	   <th><%= user.name %></th>
+  	   <th><%= @user.name %></th>
       </tr>
       <tr>
   	   <th>introduction</th>
-  	   <th><%= user.introduction %></th>
+  	   <th><%= @user.introduction %></th>
       </tr>
-  
-	  <th><%= link_to "edit", edit_user_path(current_user.id) %></th>
+	  <th><%= link_to "edit", edit_user_path(current_user.id), class: "btn btn-secondary btn-lg" %></th>
   </tr>
  </tbody>
 </table>
 
 <h1>New Book</h1>
-  <% if  @book.errors.any? %>
-  <%= @book.errors.count %>errors prohibited this obj from being saved:
-  <% @book.errors.full_messages.each do |message| %>
-    <%= message %>
-  <% end %>
-<% end %>
 <%= form_with model: @book, local:true do |f| %>
   <h5>Title</h5>
-  <%= f.text_field :title %>
+    <%= f.text_field :title %>
   <h5>Opinion</h5>
-  <%= f.text_area :body %>
-  <br>
-  <%= f.submit 'Create Book' %>
+   <%= f.text_area :body %>
+    <br>
+  <%= f.submit 'Create Book', class: "btn btn-success" %>
+
 <% end %>
 
  </div>

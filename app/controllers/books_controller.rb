@@ -1,6 +1,6 @@
 class BooksController < ApplicationController
-  before_action :authenticate_user!
-  before_action :ensure_correct_user, only: [:edit, :update, :destroy]
+  before_action :authenticate_user! #アクセス制限
+  before_action :ensure_correct_user, only: [:edit, :update, :destroy] #遷移制限
 
 
   def index
@@ -10,9 +10,9 @@ class BooksController < ApplicationController
   end
   
   def create
-      @user = current_user
       @book = Book.new(book_params)
       @book.user_id = current_user.id
+      @user = current_user
       if @book.save
            flash[:notice] = "You have creatad book successfully."
 			     redirect_to book_path(@book)
@@ -23,8 +23,7 @@ class BooksController < ApplicationController
 
   def show
       @book = Book.find(params[:id])
-      @new_book = Book.new
-      @user = current_user
+      @user = User.find(params[:id])
   end
 
 
@@ -51,7 +50,6 @@ class BooksController < ApplicationController
       book = Book.find(params[:id])
       book.destroy
       redirect_to books_path(book.id)
-      flash[:notice] = 'Book was successfully destroyed.'
   end
   
   def ensure_correct_user
