@@ -11,7 +11,7 @@
   </head>
 
   <body>
-    <header class="navbar navbar-fixed-top navbar-inverse __web-inspector-hide-shortcut__">
+    <header class="navbar navbar-fixed-top navbar-inverse">
       <div class="container">
         <nav class="nav navbar-nav navbar-left">
           <span>Bookers</span>
@@ -25,7 +25,7 @@
               <li><%= link_to " logout", destroy_user_session_path, method: :delete, class: "glyphicon glyphicon-log-out logout" %></li>
             <% else %>
               <li><%= link_to " Home", root_path, class: "glyphicon glyphicon-home home" %></li>
-              
+             <li><%= link_to " About", home_about_path, class: "glyphicon glyphicon-link about" %></li>
               <li><%= link_to " sign up", new_user_registration_path, class: "glyphicon glyphicon-edit sign_up" %></li>
               <li><%= link_to " login", new_user_session_path, class: "glyphicon glyphicon-log-in sign_in" %></li>
             <% end %>
