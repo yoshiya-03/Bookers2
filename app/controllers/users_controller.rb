@@ -1,42 +1,46 @@
 class UsersController < ApplicationController
-	before_action :authenticate_user! #アクセス制限
-	before_action :ensure_correct_user, only: [:edit, :update] #遷移制限
+    before_action :authenticate_user!
+    before_action :ensure_current_user, {only: [:edit,:update,:destroy]} #(ログインユーザー以外の情報を遷移しようとした時に制限をかける)
 
-	def index
-		@users = User.all
-		@book = Book.new
-		@user = current_user
-	end
+    def index
+      @book = Book.new 
+      @users = User.all #一覧表示するためにUserモデルのデータを全て変数に入れて取り出す
+      @user = current_user
+    end
 
-	def show
-		@user = User.find(params[:id])
-		@book = Book.new
-	end
+    def show
+      @user = User.find(params[:id])
+      @book = Book.new 
+      @books = @user.books
+    end
+    
+    def edit
+      @user = User.find(params[:id])
+      if @user.id != current_user.id
+  		   redirect_to user_path(current_user)
+      end 
+    end
 
-	def edit
-		@user = User.find(params[:id])
-	end
+    def update
+  	  @user = User.find(params[:id])
+      if @user.update(user_params)
+        flash[:notice] = "You have updated user successfully."
+  		  redirect_to user_path(@user.id)
+      else
+        render :edit
+      end
+    end
 
-	def update
-		@user = User.find(params[:id])
-        if @user.update(user_params)
-           flash[:notice] = "You have updated user successfully."
-           redirect_to "/users/#{current_user}"
-        else
-    		flash[:notice] = " errors prohibited this obj from being saved:"
-            render :edit
-        end
-        end
+   def  ensure_current_user
+        @user = User.find(params[:id])
+     if @user.id != current_user.id
+        redirect_to user_path(current_user)
+     end
+   end
+   
+    private
 
-	def ensure_correct_user
-		@user = User.find(params[:id])
-		if @user.id != current_user.id
-			redirect_to user_path(current_user)
-		end
-	end
-
-	private
-	def user_params
+  def user_params
 		params.require(:user).permit(:name, :introduction, :profile_image)
-	end
+  end
 end

@@ -1,28 +1,34 @@
-<%= render 'layouts/error', local: @book %>
+<% if flash[:notice] %>
+  <p><%= flash[:notice] %></p>
+<% end %>
+<div class="container">
+	<div class="row">
+		<div class="col-xs-3">
+			<%= render 'books/list', book: @newbook, user: @user %>
+		</div>
 
-<div class="row">
-
-  <%= render 'books/list', user: @user, books: @books %>
-  <div class= "col-md-9">
-    <h2>Book detail</h2>
-    <table class='table' >
-    <tr>
-    <td>
-      <%= link_to user_path(@book.user_id) do %>
-        <%= attachment_image_tag @book.user, :profile_image, :fill, 50, 50, fallback: "no-image.png",size:'50x50',format: 'no-image.png' %>
-         <nav>
-           <%= @book.user.name %>
-         </nav>
-       <% end %>
-    </td>
-    
-    <td><%= link_to @book.title %></td>
-    <td><%= @book.body %></td>
-      <% if @book.user_id == current_user.id %>
-        <td><%= link_to"edit", edit_book_path(@book.id),class:"btn btn-success" %></td>
-        <td><%= link_to "destroy", book_path(@book.id), class:"btn btn-danger ", method: :delete,data: {confirm: "本当に消しますか？"} %></td>
-      <% end %>
-    </tr>
-    </table>
-  </div>
+		<div class="col-xs-9">
+			<h3>Book detail</h3>
+		 <table class="table table-hover table-inverse">
+		  <tr>
+			<td>
+           <a><%= link_to  user_path(@user.id) do %>
+              <%= attachment_image_tag @user, :profile_image, class: "img-thumbnail", fallback: "no-image.png", size: "60x60" %>
+              <br>
+              <%= link_to @user.name, user_path(@user.id) %>
+            <% end %></a>
+					</td>
+					<td><%= link_to @book.title %></td>
+					<td><%= @book.body %></td>
+					<td>
+            <% if @book.user_id == current_user.id %>
+					    <%= link_to "Edit", edit_book_path(@book.id) ,class:"btn-sm btn-success" %>
+					    <%= link_to "Destroy", book_path(@book.id), method: :delete,  "data-confirm" => "本当に消しますか？"  ,class:"btn-sm btn-danger destroy_book_10349"%>
+				    <% end %>
+					</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
 </div>

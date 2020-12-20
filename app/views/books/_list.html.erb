@@ -1,40 +1,54 @@
 <!--  current_user
-現在ログインしているユーザーをモデルオブジェクトとして利用でき。
+現在ログインしているユーザーをモデルオブジェクトとして利用できる。
 関連付けがされている場合、子要素・親要素の取得などが可能-->
-
-
-<%= render 'layouts/error', local: @book %>
-
-
-<div class="col-md-3">
-  <table class="table">
-
-  <h2>User info</h2>
-    <%= attachment_image_tag @user, :profile_image, size: '100x100', format: 'jpeg', class: "attachment user profile_image fallback", fallback: "no-image.png" %>
-  <table class="table">
-    <tbody>
-      <tr>
-  	   <th>name</th>
-  	   <th><%= @user.name %></th>
-      </tr>
-      <tr>
-  	   <th>introduction</th>
-  	   <th><%= @user.introduction %></th>
-      </tr>
-	  <th><%= link_to "edit", edit_user_path(current_user.id), class: "btn btn-secondary btn-lg" %></th>
-  </tr>
- </tbody>
-</table>
-
-<h1>New Book</h1>
-<%= form_with model: @book, local:true do |f| %>
-  <h5>Title</h5>
-    <%= f.text_field :title %>
-  <h5>Opinion</h5>
-   <%= f.text_area :body %>
-    <br>
-  <%= f.submit 'Create Book', class: "btn btn-success" %>
-
+<% if book.errors %>
+   <ul>
+<% book.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+<% end %>
+   </ul>
 <% end %>
 
- </div>
+<h2>User info</h2>
+<%= attachment_image_tag @user, :profile_image, class: "img-thumbnail", fallback: "no-image.png", size: "100x100" %>
+<table class="table">
+  <tbody>
+    <tr>
+        <th>name</th>
+        <th><%= user.name %></th>
+    </tr>
+    <tr>
+        <th>introduction</th>
+        <th><%= user.introduction %></th>
+    </tr>
+  </tbody>
+</table>
+<div class="row">
+  <th><%= link_to edit_user_path(user) do %>
+  <i class= "fas fa-user-cog" >
+  </th></i>
+  <% end %>
+</div>
+
+<h2>New book</h2>
+<tr>
+<!--部分テンプレートはローカル変数を使う-->
+<%= form_with model: book, local:true do |f| %>
+
+  <div class="field">
+    <label for="book_title">Title</label>
+    <br>
+   <%= f.text_field :title, class: "col-xs-12 book_title", id: "book_title" %>
+  </div>
+
+    <div class="field">
+   <label for="book_opinion">Opinion</label>
+   <br>
+    <%= f.text_area :body, class: "col-xs-12 book_body", id: "book_body" %>
+    <br>
+  </div>
+
+    <div class="actions row">
+      <%= f.submit "Create Book", class: "btn btn-success col-xs-12" %>
+    </div>
+  <% end %>
