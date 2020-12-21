@@ -4,6 +4,7 @@
     <title>Bookers2</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
@@ -39,7 +40,7 @@
                 </li>
                 <li>
                   <%= link_to destroy_user_session_path,method: :delete do %>
-                    <span class="glyphicon"><i class="fa fa-sign-out-alt"> logout</span></i>
+                    <span class="glyphicon"><i class="fas fa-sign-out-alt"> logout</span></i>
                   <% end %>
                 </li>
             <% else %>
@@ -71,13 +72,10 @@
 
     <%= yield %>
 
-
-
-
         <footer>
           <div class='container'>
             <div class='row'>
-              <div class='col-xs-3 col-xs-offset-9'>
+              <div class='col-xs-3 offset-md-5'>
                 <p>CopyRight Infratop.inc</p>
               </div>
             </div>

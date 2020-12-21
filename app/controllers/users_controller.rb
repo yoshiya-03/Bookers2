@@ -1,10 +1,10 @@
 class UsersController < ApplicationController
     before_action :authenticate_user!
-    before_action :ensure_current_user, {only: [:edit,:update,:destroy]} #(ログインユーザー以外の情報を遷移しようとした時に制限をかける)
+    before_action :ensure_current_user, {only: [:edit,:update,:destroy]} #(遷移制限)
 
     def index
       @book = Book.new 
-      @users = User.all #一覧表示するためにUserモデルのデータを全て変数に入れて取り出す
+      @users = User.all #一覧表示するため
       @user = current_user
     end
 

@@ -10,45 +10,44 @@
 <% end %>
 
 <h2>User info</h2>
-<%= attachment_image_tag @user, :profile_image, class: "img-thumbnail", fallback: "no-image.png", size: "100x100" %>
-<table class="table">
-  <tbody>
-    <tr>
-        <th>name</th>
-        <th><%= user.name %></th>
-    </tr>
-    <tr>
-        <th>introduction</th>
-        <th><%= user.introduction %></th>
-    </tr>
-  </tbody>
-</table>
-<div class="row">
+  <%= attachment_image_tag @user, :profile_image, class: "img-thumbnail", fallback: "no-image.png", size: "100x100" %>
+    <table class="table">
+      <tbody>
+        <tr>
+          <th>name</th>
+          <th><%= user.name %></th>
+        </tr>
+        <tr>
+          <th>introduction</th>
+          <th><%= user.introduction %></th>
+        </tr>
+    </tbody>
+  </table>
+  
   <th><%= link_to edit_user_path(user) do %>
-  <i class= "fas fa-user-cog" >
-  </th></i>
+    <butoon class="btn btn-outline-secondary btn-block" "fas fa-user-cog">
+    <i class= "fas fa-user-cog" >
+  </th></i></button>
   <% end %>
-</div>
 
 <h2>New book</h2>
-<tr>
 <!--部分テンプレートはローカル変数を使う-->
-<%= form_with model: book, local:true do |f| %>
+    <%= form_with model: book, local:true do |f| %>
 
-  <div class="field">
-    <label for="book_title">Title</label>
-    <br>
-   <%= f.text_field :title, class: "col-xs-12 book_title", id: "book_title" %>
-  </div>
+      <div class="field">
+        <label for="book_title">Title</label>
+        <br>
+     <%= f.text_field :title, class: "col-xs-12 book_title", id: "book_title" %>
+      </div>
 
-    <div class="field">
-   <label for="book_opinion">Opinion</label>
-   <br>
-    <%= f.text_area :body, class: "col-xs-12 book_body", id: "book_body" %>
-    <br>
-  </div>
+      <div class="field">
+         <label for="book_opinion">Opinion</label>
+         <br>
+      <%= f.text_area :body, class: "col-xs-12 book_body", id: "book_body" %>
+        <br>
+      </div>
 
-    <div class="actions row">
-      <%= f.submit "Create Book", class: "btn btn-success col-xs-12" %>
-    </div>
+      <div class="field">
+        <%= f.submit "Create Book", class: "btn btn-success" %>
+      </div>
   <% end %>

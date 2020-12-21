@@ -1,37 +1,43 @@
-<h2>User info</h2>
-
-<%= form_with model: @user, local:true do |f| %>
-
-<!-- エラーメッセージ表示-->
- <% if @user.errors.any? %>
-        <div id="error_explanation">
-        <h2>error: <%= @user.errors.count %></h2>
-          <ul>
-            <% @user.errors.full_messages.each do |msg| %>
-                <li><%= msg %></li>
+<% if @user.errors.any? %>
+  <div id="error_explanation">
+    <h2>error: <%= @user.errors.count %></h2>
+      <ul>
+        <% @user.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
             <% end %>
-          </ul>
-        </div>
-        <% end %>
+      </ul>
+  </div>
+<% end %>
 <!-- エラーメッセージ表示-->
 
-<div class="field">
-	<label for="user_name">Name</label><br>
-	<%= f.text_field :name, autofocus: true, class:"", id:"user_name"%>
-</div>
-<br>
-<div class="field">
-	<label for="user_image">Image</label><br>
-	<%= f.attachment_field :profile_image, class: "user-edit-form" %>
-</div>
-<br>
-<div class="field">
-	<label for="user_introduction">Introduction</label><br>
-	<%= f.text_area :introduction, class: "user-introduction" %>
-</div>
-<br>
-<div class="actions">
-	<%= f.submit "Update User", class: "btn btn-secondary" %>
-</div>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-6 offset-md-5">
+  
+      <h2>User info</h2>
 
-<% end %>
+        <%= form_with model: @user, local:true do |f| %>
+
+          <div class="field">
+	          <label for="user_name">Name</label><br>
+	            <%= f.text_field :name, autofocus: true, class:"", id:"user_name"%>
+          </div>
+          <br>
+          <div class="field">
+	          <label for="user_image">Image</label><br>
+	            <%= f.attachment_field :profile_image, class: "user-edit-form" %>
+          </div>
+          <br>
+          <div class="field">
+	          <label for="user_introduction">Introduction</label><br>
+            	<%= f.text_area :introduction, class: "user-introduction" %>
+          </div>
+          <br>
+          <div class="actions">
+	          <%= f.submit "Update User", class: "btn btn-secondary" %>
+        <% end %>
+          </div>
+          
+      </div>
+    </div>
+</div>

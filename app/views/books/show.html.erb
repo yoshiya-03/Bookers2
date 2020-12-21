@@ -3,29 +3,29 @@
 <% end %>
 <div class="container">
 	<div class="row">
-		<div class="col-xs-3">
+		<div class="col-md-3">
 			<%= render 'books/list', book: @newbook, user: @user %>
 		</div>
 
-		<div class="col-xs-9">
-			<h3>Book detail</h3>
-		 <table class="table table-hover table-inverse">
-		  <tr>
-			<td>
-           <a><%= link_to  user_path(@user.id) do %>
-              <%= attachment_image_tag @user, :profile_image, class: "img-thumbnail", fallback: "no-image.png", size: "60x60" %>
-              <br>
-              <%= link_to @user.name, user_path(@user.id) %>
-            <% end %></a>
-					</td>
-					<td><%= link_to @book.title %></td>
-					<td><%= @book.body %></td>
-					<td>
-            <% if @book.user_id == current_user.id %>
-					    <%= link_to "Edit", edit_book_path(@book.id) ,class:"btn-sm btn-success" %>
-					    <%= link_to "Destroy", book_path(@book.id), method: :delete,  "data-confirm" => "本当に消しますか？"  ,class:"btn-sm btn-danger destroy_book_10349"%>
-				    <% end %>
-					</td>
+		 <div class="col-md-8 offset-md-1">
+		 	 <h3>Book detail</h3>
+		 		<table class="table table-hover">
+		  		<tr>
+						<td>
+          		<a><%= link_to  user_path(@user.id) do %>
+           		  <%= attachment_image_tag @user, :profile_image, class: "img-thumbnail", fallback: "no-image.png", size: "60x60" %>
+            		  <br>
+             	  <%= link_to @user.name, user_path(@user.id) %>
+            		<% end %></a>
+						</td>
+						<td><%= link_to @book.title %></td>
+						<td><%= @book.body %></td>
+						<td>
+           	 	<% if @book.user_id == current_user.id %>
+					    	<%= link_to "Edit", edit_book_path(@book.id) ,class:"btn-sm btn-success" %>
+					    	<%= link_to "Destroy", book_path(@book.id), method: :delete,  "data-confirm" => "本当に消しますか？"  ,class:"btn-sm btn-danger destroy_book_10349"%>
+				    	<% end %>
+						</td>
 					</tr>
 				</tbody>
 			</table>

@@ -26,9 +26,22 @@ header .navbar-left span {
 	padding-top: 10px;
 }
 
-body {
-	display: block;
+body,
+#wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
+
+footer {
+  margin-top: auto;
+}
+
+
+.about {
+  padding: 120px;
+}
+
 
 
 
