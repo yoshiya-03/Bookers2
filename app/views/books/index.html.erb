@@ -42,23 +42,22 @@
               <td>
                 <%= book.body %>
 
+              </td>
               <td>
 					      <% if current_user.already_favorited?(book) %>
 					        <%= link_to  book_favorites_path(book), method: :delete do %>
-					         <i class="fas fa-heart unlike-btn"></i>
+					         <i class="fas fa-heart like"></i>
 					      <% end %>
 					      <% else %>
 					        <%= link_to  book_favorites_path(book), method: :post do %>
-					          <i class="fas fa-heart like-btn"></i>
+					          <i class="fas fa-heart"></i>
 					      <% end %>
 					      <% end %>
 					      <%= book.favorites.count  %>
-					</td>
-
-				
-              </td>
-            </tr>
-          <% end %>
+				    	</td>
+				    	<td>コメント数:<%= book.book_comments.count %></td>
+				    	</tr>
+      <% end %>
         </tbody>
       </table>
     </div>
