@@ -1,5 +1,5 @@
 <table class="table">
-		<tr><%= attachment_image_tag user, :profile_image, :fill, 100, 100, fallback: "no_image.jpg" %></tr>
+		<tr><%= attachment_image_tag user, :profile_image, class: "img-thumbnail", fallback: "no-image.png", size: "100x100" %></tr>
 
 		<tr>
 			<th>name</th>
@@ -12,4 +12,7 @@
 		</tr>
 </table>
 
-	<%= link_to '',edit_user_path(user.id), class: "col-xs-10 btn btn-default glyphicon glyphicon-wrench" %><br>
+	<%= link_to edit_user_path(user.id) do %>
+	<span><i class="fas fa-wrench"></i></span>
+	<% end %>
+
